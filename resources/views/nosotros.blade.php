@@ -15,6 +15,6 @@
         <a href="/nosotros">Nosotros</a>
         <a href="/">Principal</a>
     </nav>
-        <h1>pagina Nosotros</h1>
+        <h1>pagina Nosotros hola</h1>
     </body>
 </html>
