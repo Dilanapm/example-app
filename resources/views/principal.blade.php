@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- esta linea de abajo es una directiva y esta apunta directamente a la carpeta views 
+ siempre que tenga una @ es una directiva y en lugar de la diagonal se utiliza punto y tampoco se le pone las extensionees
+ a los archivos que se esta señalando-->
+@extends('layouts.app')
+<!-- con section se va a inyectar el contenido que se quiere utilizar pero tambien hay que finalizarlo -->
+@section('titulo')
+    pagina principal
+@endsection
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    </head>
-    <body>
-        <nav>
-            <a href="/nosotros">Nosotros</a>
-            <a href="/">Principal</a>
-        </nav>
-        <h1>pagina principal</h1>
-    </body>
-</html>
+@section('contenido')
+    contenido de la pagina
+@endsection
