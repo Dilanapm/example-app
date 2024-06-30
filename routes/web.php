@@ -8,13 +8,3 @@ Route::get('/', function () { // dentro de los parentesis('/',function(){})signi
 Route::get('/nosotros', function () {
     return view('nosotros');
 });
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
