@@ -5,19 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Devstagram - @yield('titulo')</title>
+        @vite('resources/css/app.css')
     </head>
     <body>
-    <nav>
-        <a href="/nosotros">Nosotros</a>
-        <a href="/tienda">Tienda</a>
-        <a href="/">Principal</a>
-    </nav>
-    <!-- dentro de h1 se encuentra una directiva que permite registrar h1 como un contenedor -->
-        <h1>@yield('titulo')</h1>
 
-        <hr> <!-- hr te imprime una linea -->
-
-        <p>@yield('contenido')</p>
+    <h1 class = "text-4xl">@yield('titulo')</h1>
+    <hr>
+    <p>@yield('contenido')</p>
 
     </body>
 </html>
