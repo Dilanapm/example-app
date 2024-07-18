@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+
+
 
 class ImageController extends Controller
 {
@@ -15,6 +19,15 @@ class ImageController extends Controller
         // return response()->json($input);
         $imagen = $request->file('file'); // parque seleccione el archivo
         // return response()->json(['imagen'=>$imagen->extension()]); retorna la extension de la imagen que se puede ver a la hora de inspeccionar en la pestaña network y en response
-        return response()->json(['imagen' => "Probando respuesta"]);
+        // return response()->json(['imagen' => "Probando respuesta"]);
+        $nombreImagen = Str::uuid(). "." . $imagen->extension();
+
+        $imagenServidor = Image::make($imagen);
+        $imagenServidor->fit(1000,1000);
+
+        $imagenPath = public_path('uploads') . '/' . $nombreImagen;
+        $imagenServidor->save($imagenPath);
+
+        return response()->json(['imagen' => $nombreImagen]);
     }
 }
