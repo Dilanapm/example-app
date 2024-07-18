@@ -4,19 +4,43 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Devstagram - @yield('titulo')</title>
+        @stack('styles')
         @vite('resources/css/app.css')
-        <script src="{{ asset('js/app.js')}}" defer></script>
+        @vite('resources/js/app.js')
+        
+       
     </head>
     <body class = "bg-gray-100">
         <header class= "p-5 border-b bg-white shadow">
             <div class = "container mx-auto flex justify-between items-center">
-                <h1 class = "text-3xl font-black">
+                <h1 class = "text-xl font-black md:text-3xl">
                     Devstagram
                 </h1>
+                @auth
                 <nav class="flex gap-5 items-center">
-                    <a class= "font-bold uppercase text-gray-600 text-sm"href="#">Iniciar sesion</a>
-                    <a class= "font-bold uppercase text-gray-600 text-sm"href="{{ route('register') }}">Crear cuenta</a>
+                    <a class= "flex items-center gap-2 font-bold border-gray-400 border-2 p-1 ml-2 cursor-pointer rounded-lg text-gray-600 text-sm md:text-xl uppercase" href="{{route('posts.create')}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                          </svg>
+                          
+                        Crear
+                    </a>
+                    <a class= "font-bold text-gray-600 text-sm md:text-xl uppercase" href="{{ route('posts.index',auth()->user()->username)}}">Hola: <span class="font-normal"> {{auth()->user()->username}}</span></a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm md:text-xl">
+                            Cerrar Sesion
+                        </button>
+                    </form>
                 </nav>
+                @endauth
+                @guest
+                <nav class="flex gap-5 items-center">
+                    <a class= "font-bold uppercase text-gray-600 text-sm md:text-xl"href="{{ route('logout') }}">Iniciar sesion</a>
+                    <a class= "font-bold uppercase text-gray-600 text-sm md:text-xl"href="{{ route('register') }}">Crear cuenta</a>
+                </nav>
+                @endguest
+                
             </div>
         </header>
 
